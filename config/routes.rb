@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
+  # post 'venue' => 'venue#create'
+  get 'venue/index' => 'venue#index'
+  get 'venue/new' => 'venue#new'
+  get 'venue/create' => 'venue#create'
   get 'about' => 'pages#about'
+  post 'venues' => 'venue#create'
 
   # Session (login form/form submit/logout) routes:
   get '/login' => 'session#new'        # login platforms
@@ -11,9 +16,6 @@ Rails.application.routes.draw do
 
 
   resources :users
-
-  resources :characters
-
-  resources :posts
+  resources :venue, except: [:update, :edit, :destroy]
 
 end

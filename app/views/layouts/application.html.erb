@@ -9,13 +9,15 @@
       (Admin Level Account)
     <% end  %>
 
-    <h3><%= link_to '-About Us', about_path %>
-    <h3><%= link_to '-Logout', login_path, method: 'delete' %></h3>
+    <%= link_to '-Logout', login_path, method: 'delete' %>
+    <%= link_to '-About Us', about_path %>
+    <%= link_to '-View venue', venue_index_path %>
 
     <% else %>
       <%= link_to '-Login', login_path %>
       <%= link_to '-Sign Up', new_user_path %>
       <%= link_to '-About Us', about_path %>
+      <%= link_to '-View venue', venue_index_path %>
     <% end %>
   </div>
 
