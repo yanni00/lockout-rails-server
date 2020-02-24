@@ -4,8 +4,15 @@
 
 <div class="card">
   <div class="card-block">
-    <ul>
-      <%= render @venue %>
-    </ul>
+    <% @venue.each do |venue| %>
+      <h3><%= venue.title %>
+      <br>
+      Hosted by: <%= venue.visited_by %>
+      <br>
+      Located at: <%= venue.address %>
+      <br>
+        - Created at <%= venue.created_at %></h3>
+      <hr>
+    <% end %>
   </div>
 </div>
