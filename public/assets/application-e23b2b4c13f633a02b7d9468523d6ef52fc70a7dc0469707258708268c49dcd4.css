@@ -1,0 +1,65 @@
+.field_with_errors input {
+  border: 3px solid red;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+body {
+  font-family: Gelasio;
+  margin: 42px;
+  /* background-image: url("https://cdn.hipwallpaper.com/i/2/15/czjgpO.jpg"); */
+  object-fit: contain;
+  background-image: linear-gradient(90deg, #777b7e, #43799c);
+
+ }
+
+h1 {
+  /* font-family: Solway; */
+}
+a, a:active{ color: #ffbe00;
+text-decoration: none;
+}
+a:hover{ color: #e7b41e; }
+
+#header{
+  font-family
+}
+
+#main{
+
+}
+
+#footer{
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  background-color: lavender;
+  width: 100%;
+  margin-left: 0px;
+  background-image: url(https://cdn.hipwallpaper.com/i/13/80/OR2Qdl.png);
+}
+#websiteName{
+  float: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 50px;
+    color: #FFFFFF;
+    margin-right: 30vw;
+    font-size: 2em;
+    font-family: Orbitron;
+    font-weight: 700;
+}
