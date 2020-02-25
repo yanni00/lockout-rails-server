@@ -1,5 +1,5 @@
 {
-  "name": "yumcha",
+  "name": "lockout",
   "private": true,
   "dependencies": {
     "underscore": "^1.9.2"

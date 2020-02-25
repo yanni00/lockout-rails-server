@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :events
   root 'users#new'
 
   # post 'venue' => 'venue#create'

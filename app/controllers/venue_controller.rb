@@ -1,4 +1,5 @@
 class VenueController < ApplicationController
+
   before_action :check_if_logged_in, except: [:show, :index]
 
 
@@ -14,7 +15,7 @@ class VenueController < ApplicationController
       @venue = Venue.new(venue_params)
       if @venue.save
         flash[:success] = "Place added!"
-        redirect_to root_path
+        redirect_to venue_index_path
       else
         render 'new'
       end
