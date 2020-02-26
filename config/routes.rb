@@ -1,9 +1,11 @@
+
 Rails.application.routes.draw do
 
   resources :events
   root 'users#new'
 
-  # post 'venue' => 'venue#create'
+  get 'venue/map' => 'venue#map', :as => 'map'
+  get 'venue/near_me' => 'venue#near_me'
   get 'venue/index' => 'venue#index'
   get 'venue/new' => 'venue#new'
   get 'venue/create' => 'venue#create'

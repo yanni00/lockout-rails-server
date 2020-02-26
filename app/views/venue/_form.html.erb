@@ -1,27 +1,33 @@
-<%= form_for @venue do |f| %>
-
-  <fieldset class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control" %>
-  </fieldset>
-
-  <fieldset class="form-group">
-    <%= f.label :visited %>
-    <%= f.text_field :visited, class: "form-control" %>
-  </fieldset>
-
-  <fieldset class="form-group">
-    <%= f.label :address, 'Address' %>
-    <%= f.text_field :address, class: "form-control" %>
-  </fieldset>
-
-  <fieldset class="form-group">
-    <%= f.label :address, 'Address' %>
-    <%= f.text_field :address, class: "form-control" %>
-    <small class="text-muted">You can also enter IP. Your IP is <%= request.ip %></small>
-  </fieldset>
-
-  <%= f.submit 'Add!', class: 'btn btn-primary' %>
+<div id="centerScreen">
+  <div id="loginBox">
 
 
-<% end %>
+  <%= form_for @venue do |f| %>
+
+    <fieldset class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <%= f.label "Hosted by" %>
+      <%= f.text_field :visited, class: "form-control" %>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <%= f.label :address, 'Address' %>
+      <%= f.text_field :address, class: "form-control" %>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <%= f.label :address, 'Address' %>
+      <%= f.text_field :address, class: "form-control" %>
+      <small class="text-muted">Or use This IP:<%= request.ip %></small>
+    </fieldset>
+
+    <%= f.submit 'Add!', class: 'btn btn-primary' %>
+
+
+  <% end %>
+</div>
+</div>

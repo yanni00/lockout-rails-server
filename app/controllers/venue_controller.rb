@@ -2,6 +2,24 @@ class VenueController < ApplicationController
 
   before_action :check_if_logged_in, except: [:show, :index]
 
+    def map
+      @current_user
+    end
+
+    def near_me
+      p "the params are"
+      p params
+      lat = params[:lat].to_f
+      lon = params[:lon].to_f
+      radius = params[:radius].to_i
+      p lat
+      p lon
+      @venues = Venue.near([lat, lon], radius, units: :km)
+
+      render json: @venues
+
+    end
+
 
     def index
       @venue = Venue.order('created_at DESC')
@@ -13,6 +31,7 @@ class VenueController < ApplicationController
 
     def create
       @venue = Venue.new(venue_params)
+      @venue.user_id = @current_user.id
       if @venue.save
         flash[:success] = "Place added!"
         redirect_to venue_index_path
@@ -29,6 +48,6 @@ class VenueController < ApplicationController
     private
 
     def venue_params
-      params.require(:venue).permit(:title, :address, :visited_by)
+      params.require(:venue).permit(:title, :address, :visited)
     end
   end

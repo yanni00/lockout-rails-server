@@ -1,22 +1,28 @@
-<header><h1 class="display-4">Places</h1></header>
+<div id="centerScreen">
 
-<%= link_to 'Add venue', new_venue_path, class: 'btn btn-primary btn-lg' %>
+  <header><h1 class="display-4">Recently Signed Up Venues</h1>
+  </header>
 
-<div class="card">
-  <div class="card-block">
-    <% @venue.each do |venue| %>
-      <h3><%= venue.title %>
-      <br>
-      Hosted by: <%= venue.visited %>
-      <br>
-      Located at: <%= venue.address %>
-      <br>
-        Long:<%= venue.latitude %>
-      <br>
-        Lat:<%= venue.longitude %>
+  <h1><%= link_to '-Add venue-', new_venue_path, class: 'btn btn-primary btn-lg' %></h1>
+  <hr>
+
+  <div class="card">
+    <div class="card-block">
+      <% @venue.each do |venue| %>
+        <h3><%= venue.title %>
         <br>
-        - Created at <%= venue.created_at %></h3>
-      <hr>
-    <% end %>
+        Hosted by: <%= venue.visited %>
+        <br>
+        Located at: <%= venue.address %>
+        <br>
+          Long:<%= venue.latitude %>
+        <br>
+          Lat:<%= venue.longitude %>
+          <br>
+          - Created at <%= venue.created_at %></h3>
+        <hr>
+      <% end %>
+    </div>
   </div>
+
 </div>

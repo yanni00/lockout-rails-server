@@ -1,0 +1,80 @@
+<h1>Venues near me</h1>
+
+<style>
+  #map {
+    height: 64vh;
+    width: auto;
+  }
+
+  html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+
+<div id="map"></div>
+
+
+<script>
+  console.log('I AM RUNNING FROM MAP ERB');
+  let venues = [];
+  let userLat = 0;
+  let userLon = 0;
+
+function getVenues() {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    console.log(position.coords.latitude)
+    console.log(position.coords.longitude)
+    userLat = position.coords.latitude;
+    userLon = position.coords.longitude;
+    const radius = 10;
+
+    fetch(`/venue/near_me?lat=${userLat}&lon=${userLon}&radius=${radius}`)
+    .then( res => res.json() )
+    .then( data => {
+      console.log('response', data);
+
+      venues = data;
+
+      initMap();
+
+    },
+    function (error) {
+      console.log("The Locator was denied. :(");
+    })
+  })
+};
+
+
+function initMap() {
+
+  console.log("I AM INSIDE INITMAP");
+
+  // var bounds = new google.maps.LatLngBounds();
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: { lat: userLat, lng: userLon }
+  });
+
+  for (let i = 0; i < venues.length; i++) {
+    const venueFind = venues[i];
+
+    var marker = new google.maps.Marker({
+      position: {lat: venueFind.latitude, lng: venueFind.longitude},
+      map: map,
+      title: venueFind.name
+    });
+
+    // bounds.extend(marker.position);
+  }
+  // map.fitBounds(bounds);
+}
+
+</script>
+
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzyr7eFoXaYNJdUvzpTml3TfpgNlMxKVQ&callback=getVenues" async defer>
+</script>
