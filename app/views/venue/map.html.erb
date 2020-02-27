@@ -10,10 +10,10 @@
     html, body {
       height: 100vh;
       margin: 0;
-      padding: 25px;
       margin: 0 0 20px;
     }
   </style>
+
 <div onmouseup="getVenues()">
   <div id="centerScreen">
     <div class="slidecontainer">
@@ -23,7 +23,9 @@
   </div>
 </div>
 
-<div id="map"></div>
+<div id="venueMapBounds">
+  <div id="map"></div>
+</div>
 
 
 <script>
@@ -74,7 +76,13 @@
     console.log("I AM INSIDE INITMAP");
     var bounds = new google.maps.LatLngBounds();
     var map = new google.maps.Map(document.getElementById('map'));
-    var myLatlng = new google.maps.LatLng(userLat,  userLon);
+    var myLatLng = {lat: userLat, lng: userLon};
+
+    var userMarker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!'
+    });
 
     for (let i = 0; i < venues.length; i++) {
       const venueFind = venues[i];
@@ -86,13 +94,16 @@
       });
 
       bounds.extend(marker.position);
+      bounds.extend(userMarker.position);
     }
-    var marker = new google.maps.Marker({
-    position: myLatlng,
-    title:"Hello World!"
-    });
+
+
+
     map.fitBounds(bounds);
+
   }
+
+
 
 // refreshMap();
 </script>

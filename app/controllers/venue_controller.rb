@@ -7,17 +7,11 @@ class VenueController < ApplicationController
     end
 
     def near_me
-      p "the params are"
-      p params
       lat = params[:lat].to_f
       lon = params[:lon].to_f
       radius = params[:radius].to_i
-      p lat
-      p lon
       @venues = Venue.near([lat, lon], radius, units: :km)
-
       render json: @venues
-
     end
 
 
