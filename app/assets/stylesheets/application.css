@@ -99,7 +99,7 @@ a:hover{
   color: white;
   padding: 10px 15px;
   border: none;
-  position: sticky;
+  position: fixed;
 }
 
 .openbtn:hover {
@@ -196,7 +196,11 @@ transition: .3s;
 
 /* Event div css */
 #eventDiv {
-  background-color: black;
+    /* background-color: black; */
+    max-width: 50vw;
+    background-image: linear-gradient(240deg, #12868e, #842090);
+    border: 10px solid rgb(49, 24, 84);
+    margin: auto;
 }
 
 #venueMapBounds {
