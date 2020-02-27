@@ -1,7 +1,8 @@
 
 Rails.application.routes.draw do
 
-  resources :events
+  get 'show/index'
+  get 'show/create'
   root 'users#new'
 
   get 'venue/map' => 'venue#map', :as => 'map'
