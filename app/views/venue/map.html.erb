@@ -72,8 +72,6 @@
 
 
   function initMap() {
-
-    console.log("I AM INSIDE INITMAP");
     var bounds = new google.maps.LatLngBounds();
     var map = new google.maps.Map(document.getElementById('map'));
     var myLatLng = {lat: userLat, lng: userLon};
@@ -90,24 +88,23 @@
       var marker = new google.maps.Marker({
         position: {lat: venueFind.latitude, lng: venueFind.longitude},
         map: map,
-        title: venueFind.title + ', ' + venueFind.address + ', ' + venueFind.longitude + ', ' + venueFind.latitude,
-        content: venueFind.longitude
+        title: venueFind.title + ', ' + venueFind.address + ', ' + venueFind.longitude + ', ' + venueFind.latitude
+      });
+
+      var infoWindow = new google.maps.InfoWindow({
+        content: venueFind.title+ ', ' +venueFind.address+','+venueFind.visited
       });
 
       bounds.extend(marker.position);
+
       bounds.extend(userMarker.position);
     }
-
-    map.fitBounds(bounds);
-
-    var infoWindow = new google.maps.InfoWindow({
-      content: "This is a marker"
-    });
 
     google.maps.event.addListener(marker, 'click', function() {
       infoWindow.open(map, marker);
     });
 
+    map.fitBounds(bounds);
   } // End of initMap()
 
 
