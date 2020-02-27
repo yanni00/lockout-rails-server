@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'cloudinary'
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap', '~> 4.3.1'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'pry-rails'
