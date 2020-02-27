@@ -5,24 +5,24 @@
   <%= form_for @venue, :html => {:multipart => true} do |f| %>
 
     <fieldset class="form-group">
-      <%= f.label :title %>
+      <%= f.label :title %><br>
       <%= f.text_field :title, class: "form-control" %>
     </fieldset>
 
     <fieldset class="form-group">
-      <%= f.label "Hosted by" %>
+      <%= f.label "Hosted by" %><br>
       <%= f.text_field :visited, class: "form-control" %>
     </fieldset>
 
     <fieldset class="form-group">
-      <%= f.label :address, 'Address' %>
+      <%= f.label :address, 'Address' %><br>
       <%= f.text_field :address, class: "form-control" %>
     </fieldset>
 
     <fieldset class="form-group">
-      <%= f.label :address, 'Address' %>
+      <%= f.label :address, 'Geo Locating Address' %>
       <%= f.text_field :address, class: "form-control" %>
-      <small class="text-muted">Or use This IP:<%= request.ip %></small>
+      <br><small class="text-muted">Or to use your devices current location type ->  <%= request.ip %></small>
     </fieldset>
 
     <%= f.label 'Venue Image: ' %>
