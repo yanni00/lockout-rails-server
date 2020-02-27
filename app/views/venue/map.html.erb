@@ -81,7 +81,7 @@
     var userMarker = new google.maps.Marker({
       position: myLatLng,
       map: map,
-      title: 'Hello World!'
+      title: 'You Are Here!'
     });
 
     for (let i = 0; i < venues.length; i++) {
@@ -90,7 +90,7 @@
       var marker = new google.maps.Marker({
         position: {lat: venueFind.latitude, lng: venueFind.longitude},
         map: map,
-        title: venueFind.name
+        title: venueFind.title
       });
 
       bounds.extend(marker.position);
