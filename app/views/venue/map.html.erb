@@ -1,77 +1,96 @@
-<h1>Venues near me</h1>
+<div id="centerScreen"><h1>Find Venues near me</h1></div>
 
-<style>
-  #map {
-    height: 64vh;
-    width: auto;
-  }
+  <style>
+    #map {
+      height: 60vh;
+      width: auto;
+    }
 
-  html, body {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-</style>
+    html, body {
+      height: 100vh;
+      margin: 0;
+      padding: 25px;
+      margin: 0 0 20px;
+    }
+  </style>
+<div onmouseup="refreshMap()">
+  <div id="centerScreen">
+    <div class="slidecontainer">
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      <p>Find Venues Within <span id="demo"></span>00m</p>
+    </div>
+  </div>
+</div>
 
 
 <div id="map"></div>
 
 
 <script>
-  console.log('I AM RUNNING FROM MAP ERB');
-  let venues = [];
-  let userLat = 0;
-  let userLon = 0;
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
 
-function getVenues() {
-  navigator.geolocation.getCurrentPosition(function (position) {
-    console.log(position.coords.latitude)
-    console.log(position.coords.longitude)
-    userLat = position.coords.latitude;
-    userLon = position.coords.longitude;
-    const radius = 10;
+    slider.oninput = function() {
+    output.innerHTML = this.value;
+    console.log(output.innerHTML);
+  }
 
-    fetch(`/venue/near_me?lat=${userLat}&lon=${userLon}&radius=${radius}`)
-    .then( res => res.json() )
-    .then( data => {
-      console.log('response', data);
+    console.log('I AM RUNNING FROM MAP ERB');
+    let venues = [];
+    let userLat = 0;
+    let userLon = 0;
 
-      venues = data;
+  function getVenues() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log(position.coords.latitude)
+      console.log(position.coords.longitude)
+      userLat = position.coords.latitude;
+      userLon = position.coords.longitude;
+      radius = (output.innerHTML * 0.1);
 
-      initMap();
+      fetch(`/venue/near_me?lat=${userLat}&lon=${userLon}&radius=${radius}`)
+      .then( res => res.json() )
+      .then( data => {
+        console.log('response', data);
 
-    },
-    function (error) {
-      console.log("The Locator was denied. :(");
+        venues = data;
+
+        initMap();
+
+      },
+      function (error) {
+        console.log("The Locator was denied. :(");
+      })
     })
-  })
-};
+  };
 
 
-function initMap() {
+  function initMap() {
 
-  console.log("I AM INSIDE INITMAP");
+    console.log("I AM INSIDE INITMAP");
 
-  // var bounds = new google.maps.LatLngBounds();
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: { lat: userLat, lng: userLon }
-  });
-
-  for (let i = 0; i < venues.length; i++) {
-    const venueFind = venues[i];
-
-    var marker = new google.maps.Marker({
-      position: {lat: venueFind.latitude, lng: venueFind.longitude},
-      map: map,
-      title: venueFind.name
+    var bounds = new google.maps.LatLngBounds();
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: { lat: userLat, lng: userLon }
     });
 
-    // bounds.extend(marker.position);
-  }
-  // map.fitBounds(bounds);
-}
+    for (let i = 0; i < venues.length; i++) {
+      const venueFind = venues[i];
 
+      var marker = new google.maps.Marker({
+        position: {lat: venueFind.latitude, lng: venueFind.longitude},
+        map: map,
+        title: venueFind.name
+      });
+
+      bounds.extend(marker.position);
+    }
+    map.fitBounds(bounds);
+  }
+
+refreshMap();
 </script>
 
 
