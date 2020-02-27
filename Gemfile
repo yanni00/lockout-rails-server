@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'gmaps4rails'
 gem 'geocoder'
