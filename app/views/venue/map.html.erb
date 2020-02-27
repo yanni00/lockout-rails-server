@@ -4,6 +4,7 @@
     #map {
       height: 60vh;
       width: auto;
+      margin-bottom: 6vh;
     }
 
     html, body {
@@ -13,11 +14,11 @@
       margin: 0 0 20px;
     }
   </style>
-<div onmouseup="refreshMap()">
+<div onmouseup="getVenues()">
   <div id="centerScreen">
     <div class="slidecontainer">
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-      <p>Find Venues Within <span id="demo"></span>00m</p>
+      <input type="range" min="1" max="50" value="5" class="slider" id="myRange">
+      <p>Find Venues Within <span id="demo"></span>km</p>
     </div>
   </div>
 </div>
@@ -32,8 +33,8 @@
     output.innerHTML = slider.value;
 
     slider.oninput = function() {
-    output.innerHTML = this.value;
-    console.log(output.innerHTML);
+      output.innerHTML = this.value;
+      console.log(output.innerHTML);
   }
 
     console.log('I AM RUNNING FROM MAP ERB');
@@ -47,7 +48,7 @@
       console.log(position.coords.longitude)
       userLat = position.coords.latitude;
       userLon = position.coords.longitude;
-      radius = (output.innerHTML * 0.1);
+      radius = (output.innerHTML);
 
       fetch(`/venue/near_me?lat=${userLat}&lon=${userLon}&radius=${radius}`)
       .then( res => res.json() )
@@ -71,10 +72,7 @@
     console.log("I AM INSIDE INITMAP");
 
     var bounds = new google.maps.LatLngBounds();
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
-      center: { lat: userLat, lng: userLon }
-    });
+    var map = new google.maps.Map(document.getElementById('map'));
 
     for (let i = 0; i < venues.length; i++) {
       const venueFind = venues[i];
@@ -90,7 +88,7 @@
     map.fitBounds(bounds);
   }
 
-refreshMap();
+// refreshMap();
 </script>
 
 
