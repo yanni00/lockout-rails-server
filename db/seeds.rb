@@ -19,3 +19,10 @@ v4 = Venue.create title: "Venue Test 4", address: "Elizabeth St",   visited: "Ya
 puts "Destroying venue..."
 
 puts "Done!"
+
+puts "Destroying Events"
+
+Event.destroy_all
+
+e1 = Venue.create title: "Venue Test 1", address: "New Years Eve Party",
+  visited: "Yanni"

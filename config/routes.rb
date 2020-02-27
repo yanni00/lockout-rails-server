@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'venue/index' => 'venue#index'
   get 'venue/new' => 'venue#new'
   get 'venue/create' => 'venue#create'
+
   get 'about' => 'pages#about'
   post 'venues' => 'venue#create'
 
