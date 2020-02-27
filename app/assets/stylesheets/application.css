@@ -16,8 +16,6 @@
 
 body {
   font-family: Gelasio;
-  /* margin: 42px; */
-  /* background-image: url("https://cdn.hipwallpaper.com/i/2/15/czjgpO.jpg"); */
   object-fit: contain;
   background-image: linear-gradient(90deg, #18acb5, #b327c4);
 }
