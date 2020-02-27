@@ -90,18 +90,25 @@
       var marker = new google.maps.Marker({
         position: {lat: venueFind.latitude, lng: venueFind.longitude},
         map: map,
-        title: venueFind.title
+        title: venueFind.title + ', ' + venueFind.address + ', ' + venueFind.longitude + ', ' + venueFind.latitude,
+        content: venueFind.longitude
       });
 
       bounds.extend(marker.position);
       bounds.extend(userMarker.position);
     }
 
-
-
     map.fitBounds(bounds);
 
-  }
+    var infoWindow = new google.maps.InfoWindow({
+      content: "This is a marker"
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infoWindow.open(map, marker);
+    });
+
+  } // End of initMap()
 
 
 
